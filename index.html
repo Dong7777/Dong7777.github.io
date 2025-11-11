@@ -3,142 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>金冬 - 星际简历</title>
+  <title>金冬 - 电子简历</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+      font-family: "Segoe UI","Microsoft YaHei",sans-serif;
       background: #000;
-      color: #e0e0e0;
+      color: #f4f6ff;
       overflow-x: hidden;
     }
 
-    /* ===== 背景 ===== */
+    /* 背景：你的星云图 + 稍微暗一点 */
     .bg {
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 110%; height: 110%;
       background: url("galaxy.jpg") center/cover no-repeat fixed;
-      filter: brightness(0.9) contrast(1.2) saturate(1.2);
-      z-index: -2;
+      filter: brightness(0.9) contrast(1.1) saturate(1.2);
+      z-index: -3;
+      transition: transform 0.3s ease-out;
     }
 
-    /* 流星画布 */
+    /* 星星+流星层 */
     #starfield {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: -1;
+      z-index: -2;
       pointer-events: none;
     }
 
-    /* ===== 主体布局 ===== */
     main {
       max-width: 960px;
       margin: 0 auto;
-      padding: 4rem 1.5rem 3rem;
+      padding: 3.5rem 1.5rem 3rem;
     }
 
     header {
       text-align: center;
-      margin-bottom: 3rem;
-      color: #fff;
+      margin-bottom: 2.5rem;
+      color: #fdfdff;
     }
+
     header h1 {
       font-size: 2.6rem;
       letter-spacing: 2px;
-      text-shadow: 0 0 20px #b58cff, 0 0 40px #8855ff;
-    }
-    header p {
-      margin-top: 1rem;
-      color: #cfc6ff;
-      font-size: 1rem;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #b3aaff; }
-      to { text-shadow: 0 0 20px #fff3ff, 0 0 35px #a889ff; }
+      color: #f6f2ff;
+      text-shadow:
+        0 0 6px #f6f2ff,
+        0 0 16px #d2b9ff,
+        0 0 34px #7fc7ff;
     }
 
-    /* ===== 卡片统一风格 ===== */
+    header p {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      color: #d0d6ff;
+      text-shadow: 0 0 10px rgba(127,199,255,0.5);
+    }
+
     section {
       position: relative;
-      margin-bottom: 2rem;
-      padding: 2rem 2.2rem;
-      background: rgba(25, 20, 60, 0.35);
-      border: 1px solid rgba(180, 160, 255, 0.35);
+      margin-bottom: 1.8rem;
+      padding: 1.8rem 2rem;
+      background: rgba(5, 7, 24, 0.9);          /* 实心一些，保证可读 */
+      border: 1px solid rgba(181, 140, 255, 0.6);
       border-radius: 16px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(150, 120, 255, 0.25);
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-    section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 45px rgba(180, 150, 255, 0.45);
-      border-color: rgba(200, 180, 255, 0.8);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 26px rgba(20, 16, 60, 0.9);
     }
 
-    /* ===== 流星特效 ===== */
-    section::before {
-      content: "";
-      position: absolute;
-      top: -20%;
-      left: -20%;
-      width: 2px;
-      height: 150%;
-      background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0));
-      transform: rotate(45deg);
-      opacity: 0;
-      animation: shooting-star 10s linear infinite;
-    }
-    @keyframes shooting-star {
-      0%, 80% { opacity: 0; transform: translate(-150%, -150%) rotate(45deg); }
-      85% { opacity: 1; transform: translate(50%, 50%) rotate(45deg); }
-      90%, 100% { opacity: 0; transform: translate(150%, 150%) rotate(45deg); }
-    }
-
-    /* ===== 标题 ===== */
     h2 {
-      color: #d8c7ff;
-      border-bottom: 2px solid rgba(180, 160, 255, 0.8);
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
+      color: #c9b3ff;
+      border-bottom: 2px solid rgba(181, 140, 255, 0.8);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.9rem;
     }
 
-    ul { list-style: none; }
-    li { margin-bottom: 0.5rem; }
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 0.45rem; line-height: 1.6; }
 
-    .job-title {
-      font-weight: bold;
-      color: #fff;
-    }
-    .time {
-      color: #bbb;
-      font-size: 0.9rem;
-      margin-left: 0.4rem;
-    }
     a {
-      color: #b9a3ff;
+      color: #8fd5ff;
       text-decoration: none;
     }
     a:hover { text-decoration: underline; }
 
+    .job-title {
+      font-weight: bold;
+      color: #ffffff;
+      margin-top: 1rem;
+    }
+    .time {
+      color: #c2c6ff;
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+    }
+
     footer {
       text-align: center;
-      color: #aab6ff;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
+      color: #b3b9ff;
+      font-size: 0.85rem;
+      margin-top: 2.5rem;
+      text-shadow: 0 0 8px rgba(139,171,255,0.6);
     }
 
     @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      section { padding: 1.2rem; }
+      header h1 { font-size: 2.1rem; }
+      section { padding: 1.4rem 1.2rem; }
     }
   </style>
 </head>
@@ -149,76 +122,107 @@
   <main>
     <header>
       <h1>金冬</h1>
-      <p>你见过洛杉矶凌晨四点的太阳吗？——热爱技术，也热爱全力以赴的每个深夜。</p>
+      <p>你见过洛杉矶凌晨四点的太阳吗？</p>
     </header>
 
+    <!-- 个人信息 -->
     <section>
-      <h2>👤 个人概况</h2>
+      <h2>👤 个人信息</h2>
       <ul>
-        <li><strong>所在城市：</strong>青岛</li>
-        <li><strong>联系电话：</strong>15688817596</li>
-        <li><strong>邮箱：</strong><a href="mailto:18004083353@163.com">18004083353@163.com</a></li>
-        <li><strong>GitHub：</strong><a href="https://github.com/Dong7777" target="_blank">https://github.com/Dong7777</a></li>
-        <li><strong>当前职位：</strong>电表固件工程师</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>🧠 专业技能</h2>
-      <ul>
-        <li>C / C++ 编程，嵌入式开发经验丰富</li>
-        <li>Qt Widgets / QML 界面开发</li>
-        <li>TCP 通信、串口通信、多线程、信号槽机制</li>
-        <li>电能表固件开发、RT 系统与存储系统交互</li>
-        <li>功能模块兼容适配与系统调试</li>
-        <li>熟悉 DL/T 376.2、DL/T 645、DL/T 698、DLMS/COSEM 协议</li>
-        <li>具备机器人示教系统与机械臂控制软件开发经验</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>🚀 工作与项目经历</h2>
-      <p class="job-title">青岛乾程科技股份有限公司 | 电表固件工程师 <span class="time">2023.07 – 至今</span></p>
-      <ul>
-        <li>主导国网物联表、导轨表及统外系列电能表固件开发。</li>
-        <li>负责协议栈冻结、RT 系统交互、功能模块兼容与采集功能开发。</li>
-        <li>参与海外项目测试与通信协议适配。</li>
-      </ul>
-
-      <p class="job-title">元启工业技术有限公司 | 软件工程师 <span class="time">2021.06 – 2023.06</span></p>
-      <ul>
-        <li>参与仓储机器人示教系统的搭建与调试。</li>
-        <li>基于 Qt 实现示教、人机交互与实时控制界面。</li>
-        <li>项目已在工厂试运行阶段稳定运行。</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>🎓 教育经历</h2>
-      <ul>
+        <li><strong>姓名：</strong> 金冬</li>
+        <li><strong>职位：</strong> 电表固件工程师</li>
+        <li><strong>所在地：</strong> 青岛</li>
+        <li><strong>电话：</strong> 156-8881-7596</li>
+        <li><strong>邮箱：</strong> <a href="mailto:18004083353@163.com">18004083353@163.com</a></li>
+        <li><strong>GitHub：</strong> <a href="https://github.com/Dong7777" target="_blank">github.com/Dong7777</a></li>
+        <li><strong>学历背景：</strong></li>
         <li>本科：鲁东大学 — 数学专业</li>
         <li>研究生：大连海事大学 — 数据科学专业</li>
       </ul>
     </section>
 
+    <!-- 专业技能（完全按你之前那版） -->
+    <section>
+      <h2>🧠 专业技能</h2>
+      <ul>
+        <li><strong>编程语言：</strong> C / C++</li>
+        <li><strong>开发平台：</strong> IAR、Keil、Eclipse、Qt</li>
+        <li><strong>主要芯片平台：</strong> 复旦微、锐能微、万高</li>
+        <li><strong>开发方向：</strong> 底层驱动、任务调度、协议解析、功能实现</li>
+        <li><strong>上位机开发：</strong> 使用 Qt 完成示教系统与调试工具开发，涉及界面、多线程、通信、信号槽机制</li>
+        <li><strong>电表通信协议：</strong> 376.2 / 645 / 698 / Modbus / DLMS</li>
+        <li><strong>电表计量与功能：</strong> 计量采集、冻结、费率、事件、负控、蓝牙通信、4G 通信、系统调试与测试</li>
+        <li><strong>综合能力：</strong> 熟悉嵌入式固件开发全流程，包括硬件接口、协议调试、系统集成与现场问题定位。</li>
+      </ul>
+    </section>
+
+    <!-- 项目经验（用你原来那版详细内容） -->
+    <section>
+      <h2>⚙️ 项目经验</h2>
+
+      <p class="job-title">国网物联表项目 <span class="time">（2023.07 – 2024.07）</span></p>
+      <ul>
+        <li>参与国网物联表的开发。</li>
+        <li>负责协议栈冻结及通信流程的设计与实现。</li>
+        <li>项目采用国网自有系统，负责系统间交互逻辑的开发与调试。</li>
+        <li>负责整体测试及功能验证。</li>
+        <li><strong>项目成果：</strong> 通过国网一致性测试，通信稳定可靠。</li>
+      </ul>
+
+      <p class="job-title">国网导轨表项目 <span class="time">（2024.07 – 2025.07）</span></p>
+      <ul>
+        <li>参与国网导轨表的开发。</li>
+        <li>负责 RT 系统与存储系统的交互及兼容性实现。</li>
+        <li>负责功能模块兼容、功能移植及采集功能的开发。</li>
+        <li>参与系统联调与功能测试，确保各模块稳定运行。</li>
+        <li><strong>项目成果：</strong> 实现 RT 系统兼容与模块统一化，系统长期运行稳定。</li>
+      </ul>
+
+      <p class="job-title">统外低成本校园导轨表项目 <span class="time">（2025.07 – 至今）</span></p>
+      <ul>
+        <li>参与统外低成本校园导轨表的开发。</li>
+        <li>独立完成整体计量及功能的设计、实现、调试与测试。</li>
+        <li>实现 645 协议及 Modbus 协议通信。</li>
+        <li>负责蓝牙通信与 4G 通信模块的功能实现与调试。</li>
+        <li><strong>项目成果：</strong> 完成蓝牙与 4G 并行通信集成，系统稳定通过功能测试。</li>
+      </ul>
+
+      <p class="job-title">海外投标项目维护工作（DLMS 协议）</p>
+      <ul>
+        <li>在主项目间隙，参与海外投标项目的测试支持工作。</li>
+        <li>负责 DLMS 协议通信的调试与验证。</li>
+        <li>处理加密通信、报文兼容及主站适配相关问题。</li>
+        <li><strong>项目成果：</strong> 完成 DLMS 协议加密通信调试，确保主站兼容性。</li>
+      </ul>
+
+      <p class="job-title">仓储机器人示教系统项目 <span class="time">（2021.06 – 2023.06）</span></p>
+      <ul>
+        <li>参与仓储机器人示教系统的搭建与调试。</li>
+        <li>负责机械臂、控制系统及机器人外设的联动与控制逻辑实现。</li>
+        <li>实现机械臂抓取料盒、剪式升降推送料箱、站点任务搭建与执行等功能。</li>
+        <li>使用 Qt 开发示教软件，完成界面交互、通信、多线程及信号槽机制的实现。</li>
+        <li>与同事两人共同完成整个示教系统的开发，项目现已在工厂试运行。</li>
+      </ul>
+    </section>
+
     <footer>
-      <p>© 2025 金冬 | 星际简历</p>
-      <p><em>“Exploring the universe of code and technology.”</em></p>
+      <p>© 2025 金冬 | 电子简历（星云背景版）</p>
     </footer>
   </main>
 
   <script>
-    const canvas = document.getElementById("starfield");
-    const ctx = canvas.getContext("2d");
+    // 星空 + 流星
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
     function resize() {
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    window.addEventListener("resize", resize);
+    window.addEventListener('resize', resize);
     resize();
 
-    const STAR_COUNT = 180;
-    let stars = [];
+    const STAR_COUNT = 200;
+    const stars = [];
     for (let i = 0; i < STAR_COUNT; i++) {
       stars.push({
         x: Math.random() * canvas.width,
@@ -231,48 +235,49 @@
 
     let meteors = [];
     function spawnMeteor() {
-      const startX = Math.random() * canvas.width;
-      const startY = -Math.random() * canvas.height * 0.3;
-      const speed = 8 + Math.random() * 5;
-      meteors.push({
-        x: startX,
-        y: startY,
-        vx: -speed,
-        vy: speed,
-        life: 1
-      });
-      setTimeout(spawnMeteor, 5000 + Math.random() * 4000);
+      const sx = Math.random() * canvas.width;
+      const sy = -Math.random() * canvas.height * 0.3;
+      const spd = 10 + Math.random() * 6;
+      meteors.push({ x: sx, y: sy, vx: -spd, vy: spd, life: 1 });
+      if (meteors.length > 5) meteors.shift();
+      setTimeout(spawnMeteor, 800 + Math.random() * 1200);
     }
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // 星星
       for (const s of stars) {
         s.alpha += s.da;
         if (s.alpha <= 0 || s.alpha >= 1) s.da *= -1;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(200, 200, 255, ${s.alpha})`;
+        ctx.fillStyle = `rgba(200, 220, 255, ${s.alpha})`;
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
       }
-
-      meteors.forEach((m, i) => {
+      // 流星
+      meteors.forEach(m => {
         m.x += m.vx;
         m.y += m.vy;
         m.life -= 0.02;
-        ctx.strokeStyle = `rgba(200, 180, 255, ${m.life})`;
+        ctx.strokeStyle = `rgba(190, 220, 255, ${m.life})`;
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(m.x, m.y);
         ctx.lineTo(m.x - m.vx * 8, m.y - m.vy * 8);
         ctx.stroke();
-        if (m.life <= 0) meteors.splice(i, 1);
       });
-
       requestAnimationFrame(draw);
     }
-
     draw();
-    setTimeout(spawnMeteor, 2000 + Math.random() * 3000);
+    setTimeout(spawnMeteor, 1000);
+
+    // 背景轻微跟鼠标移动
+    const bg = document.querySelector('.bg');
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      bg.style.transform = `translate3d(${-x}px, ${-y}px, 0)`;
+    });
   </script>
 </body>
 </html>
